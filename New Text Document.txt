@@ -1,0 +1,80 @@
+#include <conio.h>
+#include <stdio.h>
+#include <stdlib.h>
+float CtoF(float t);
+float CtoK(float t);
+float KtoC(float t);
+float KtoF(float t);
+float FtoC(float t);
+float FtoK(float t);
+int main(int argc, char **argv[])
+
+{
+	float temp=atof(argv[1]);
+	char system;
+	if (argc==3)
+	{
+		system=argv[2][0];		
+	}
+	if(system=='C' || argc==2)
+	{
+		if (temp < -273.15)
+		{
+			printf("Invalid input\n");
+		}
+		else
+		{
+			printf("Celcium -> %.2f C %.2f K %.2f F\n", temp, CtoK(temp), CtoF(temp));
+		}
+		
+	}
+	if(system=='F' || argc==2)
+	{
+		if (temp<-459.67)
+		{
+			printf("Invalid input\n");
+		}
+		else
+		{
+			printf("Fahrenheit -> %.2f C  %.2f K %.2f F\n", FtoC(temp), FtoK(temp), temp);
+		}
+		
+
+	}
+	if(system=='K' || argc==2)
+	{
+		if (temp<0)
+		{
+			printf("Invalid input\n");
+		}
+		else
+		{
+			printf("Kelvin -> %.2f C %.2f K %.2f F\n", KtoC(temp), temp, KtoF(temp));
+		}
+	}
+	return 0;
+}
+float CtoF(float t)
+{
+	return t*1.8+32;
+}
+float CtoK(float t)
+{
+	return t+273.15;
+}
+float KtoC(float t)
+{
+	return t-273.15;
+}
+float KtoF(float t)
+{
+	return CtoF(KtoC(t));
+}
+float FtoC(float t)
+{
+	return (t-32)/1.8;
+}
+float FtoK(float t)
+{
+	return CtoK(FtoC(t));
+}
